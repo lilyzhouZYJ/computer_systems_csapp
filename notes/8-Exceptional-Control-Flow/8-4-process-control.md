@@ -378,9 +378,9 @@ int builtin_command(char **argv){
 // parse the command line and build the argv array;
 // returns whether to run in background
 int parseline(char *buf, char **argv){
-    char *delim;        // points to first space delimiter
-    int argc;           // number of args
-    int bg;             // background job?
+    char *delim;                // points to first space delimiter
+    int argc;                   // number of args
+    int bg;                     // background job?
 
     buf[strlen(buf)-1] = ' ';       // replace trailing '\n' with space
     while (*buf && (*buf == ' '))   // ignore leading spaces
