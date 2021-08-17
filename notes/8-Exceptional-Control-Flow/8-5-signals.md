@@ -3,7 +3,7 @@
 - Signals are a higher-level software form of exceptional control flow, and they allow processes and kernels to interrupt other processes.
 - **Signal** - a small message that notifies a process that an event of some type has occurred in the system.
 
-<img src="8-26-linux-signals.jpg" alt="Linux signals" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="8-26-linux-signals.jpg" alt="Linux signals" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -14,11 +14,11 @@
 - ***Receiving a signal*** - a destination process receives a signal when it is forced by the kernel to react to the signal.
   - The process can 1) ignore the signal, 2) terminate, or 3) *catch* the signal with a user-level function called the **signal handler**.
 
-<img src="8-27-signal handling.jpg" alt="Signal handling" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="8-27-signal-handling.jpg" alt="Signal handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
-- ***Pending signal*** - a signal that has been sent but not yet received.
+- ***Pending signal*** - a signal that has been *sent* but not yet *received*.
   - At any point in time, there can be at most one pending signal of a particular type. If a process has a pending signal of type *k*, then any subsequent signals of type *k* sent to the process will not be queued but will be discarded.
 - A process can ***block*** the receipt of certain signals.
   - When a signal is blocked, it can be delivered but will not be received until the process unblocks it.
@@ -60,7 +60,7 @@ int setpgid(pid_t pid, pid_t pgid);         // returns 0 on success, -1 on error
 - Processes created as a result of evaluating a single command line are referred to as **jobs**.
 - At any point in time, there can be at most one foreground job and 0 or more background ones.
 
-<img src="8-28-foreground-background-process-groups.jpg" alt="Foreground and background proces groups" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="8-28-foreground-background-process-groups.jpg" alt="Foreground and background proces groups" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -165,7 +165,7 @@ int main(){
 
 - Signal handlers can also be interrupted by other handlers, as shown below.
 
-<img src="8-31-handlers-interrupted-by-other-handlers.jpg" alt="Handlers can be interrupted by other handlers" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="8-31-handlers-interrupted-by-other-handlers.jpg" alt="Handlers can be interrupted by other handlers" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -230,8 +230,6 @@ Sigprocmask(SIGSETMASK, &prev_mask, NULL);
 
 ### **Safe Signal Handling**
 
-Important guidelines:
-
 1. *Keep handlers as simple as possible.*
 2. *Call only async-signal-safe functions in the handlers.*
    - **Async-signal-safe** functions have the property that they can be safely called from a signal handler, because a) it is ***reentrant*** (accesses only lcoal variables), or b) it cannot be interrupted by a signal handler.
@@ -248,7 +246,7 @@ Important guidelines:
 ### **Correct Signal Handling**
 
 - Pending singals are not queued.
-- The existence of a pending signal merely indicates that *at least* one signal of the type has arrived.
+- ***The existence of a pending signal merely indicates that *at least* one signal of the type has arrived***.
 
 Example:
 
@@ -292,7 +290,7 @@ int main(){
 
 The above handler might not reap all children, for not all SIGCHLD signals will be received. If a SIGCHLD is received while the handler is processing a previously received SIGCHLD, the new signal will simply be discarded. The child process associated with the new signal will then never be reaped.
 
-The crucial lesson here is that we cannot use signals to count the occurrence of events.
+The crucial lesson here is that ***we cannot use signals to count the occurrence of events***.
 
 The solution to the above problem is to reap as many zombie children as possible whenever a SIGCHLD is received:
 
@@ -310,3 +308,195 @@ void handler2(int sig){
     errno = olderrno;
 }
 ```
+
+### **Portable Signal Handling**
+
+- We can use the wrapper function `Signal`, propsed by W. Richard Stevens, which calls `sigaction` for us.
+
+```c
+#include <signal.h>
+
+int sigaction(int signum, struct sigaction *act, struct sigaction *oldact);
+// returns 0 if okay, -1 on error
+
+// sigaction is unwieldy, so we can use a Signal wrapper
+```
+
+- The `Signal` wrapper installs a handler with the following attributes:
+  - Only signals of the type currently being processed by the handler are blocked.
+  - Signals are not queued.
+  - Interrupted system calls are automatically restarted whenever possible.
+  - Once the handler is installed, it remains installed until `Signal` is called with the `handler` argument as either SIG_IGN or SIG_DFL.
+
+<br>
+
+## 8.5.6 Synchronizing Flows to Avoid Nasty Concurrency Bugs
+
+- **Race** - synchronization error between two concurrent flows.
+
+Example shell problem with **synchronization error**:
+
+```c
+/* buggy code! */
+void handler(int sig){
+    int olderrno = errno;
+    sigset_t mask_all, prev_all;
+    pid_t pid;
+
+    Sigfillset(&mask_all);
+    while ((pid = waitpid(-1, NULL, 0)) > 0) {
+        // reap a zombie child
+        Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);   // block all signals
+        deletejob(pid);     // delete child from the job list
+        Sigprocmask(SIG_SETMASK, &prev_all, NULL);
+    }
+
+    if (errno != ECHILD)
+        Sio_error("waitpid error");
+    errno = olderrno;
+}
+
+int main(int argc, char **argv){
+    int pid;
+    sigset_t mask_all, prev_all;
+
+    Sigfillset(&mask_all);
+    Signal(SIGCHLD, handler);   // install handler
+    initjobs();                 // initialize job list
+
+    while (1) {
+        // child
+        if ((pid = Fork()) == 0)
+            Execve("/bin/date", argv, NULL);
+
+        // parent
+        Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
+        addjob(pid);    // add child to job list
+        Sigprocmask(SIG_SETMASK, &prev_all, NULL);
+    }
+    exit(0);
+}
+```
+
+In the above code, if the child finishes before the parent reaches `addjob`, then we will have the handler run `deletejob` before the parent has a chance to add the child to the job list. This is a **race** between `addjob` and `deletejob`.
+
+We can fix this problem by blocking SIGCHLD signals before calling `fork` and unblocking them only after we have called `addjob`. This would ensure that the child is reaped after it is added to the job list.
+
+Also note that the child inherits the `blocked` bit vector of the parent, so we have to unblock SIGCHLD in the child.
+
+```c
+/* Fixed synchronization error! */
+void handler(int sig){
+    int olderrno = errno;
+    sigset_t mask_all, prev_all;
+    pid_t pid;
+
+    Sigfillset(&mask_all);
+    while ((pid = waitpid(-1, NULL, 0)) > 0) {
+        // reap a zombie child
+        Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
+        deletejob(pid);     // delete child from the job list
+        Sigprocmask(SIG_SETMASK, &prev_all, NULL);
+    }
+
+    if(errno != ECHILD)
+        Sio_error("waitpid error");
+    errno = olderrno;
+}
+
+int main(int argc, char **argv){
+    int pid;
+    sigset_t mask_all, mask_one, prev_one;
+
+    Sigfillset(&mask_all);
+    Sigemptyset(&mask_one);
+    Sigaddset(&mask_one, SIGCHLD);
+    Signal(SIGCHLD, handler);       // install handler
+    initjobs();                     // init job list
+
+    while (1) {
+        Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);   // block SIGCHLD
+        if ((pid = Fork()) == 0) {
+            // child
+            Sigprocmask(SIG_SETMASK, &prev_one, NULL);  // unblock SIGCHLD
+            Execve("/bin/date", argv, NULL);
+        }
+        // parent
+        Sigprocmask(SIG_BLOCK, &mask_all, NULL);        // block all signals
+        addjob(pid);        // add child to job list
+        Sigprocmask(SIG_SETMASK, &prev_one, NULL);      // unblock all signals, including SIGCHLD
+    }
+}
+```
+
+<br>
+
+## 8.5.7 Explicitly Waiting for Signals
+
+Example: when a Linux shell creates a foreground job, it has to wait for the job to finish and be reaped by the SIGCHLD handler before it can accept the next user command.
+
+```c
+#include "csapp.h"
+
+volatile sig_atomic_t pid;
+
+void sigchld_handler(int s){
+    int olderrno = errno;
+    pid = waitpid(-1, NULL, 0);     // reap child
+    errno = olderrno;
+}
+
+void sigint_handler(int s) {}
+
+int main(int argc, char ** argv){
+    sigset_t mask, prev;
+
+    Signal(SIGCHLD, sigchld_handler);   // install handler
+    Signal(SIGINT, sigint_handler);     // install handler
+    Sigemptyset(&mask);
+    Sigaddset(&mask, SIGCHLD);
+
+    while (1) {
+        Sigprocmask(SIG_BLOCK, &mask, &prev);       // block SIGCHLD
+        
+        if(Fork() == 0)     // child
+            exit(0);
+
+        // parent
+        pid = 0;
+        Sigprocmask(SIG_SETMASK, &prev, NULL);      // unblock SIGCHLD
+
+        // wait for SIGCHLD to be received
+        while (!pid) ;
+
+        // do work after receiving SIGCHLD
+        printf(".");
+    }
+    exit(0);
+}
+```
+
+- Note that SIGCHLD is blocked before `fork` and setting `pid` to 0. This avoids the race where the child terminates and the handler runs before the parent sets `pid = 0`, in which case `pid` would never change after being set to 0.
+- Also note that the spin loop is wasteful of processor resources. We can optimize this by using `sigsuspend`.
+
+### **`sigsuspend`**
+
+```c
+#include <signal.h>
+
+int sigsuspend(const sigset_t *mask);       // returns -1
+```
+
+- `sigsuspend` temporarily replaces the current blocked set with `mask` and suspends the process until the receipt of a signal whose action is either to run a handler or to terminate the process.
+  - If the action is to terminate, then the process will terminate without returning from `sigsuspend`.
+  - If the action is to run a handler, then `sigsuspend` will return after the handler returns, and it will restore the blocked set to the original set.
+
+`sigsuspend` is the ***atomic*** version of the following:
+
+```c
+sigprocmask(SIG_BLOCK, &mask, &prev);
+pause();
+sigprocmask(SIG_SETMASK, &prev, NULL);
+```
+
+We have to use `sigsuspend` instead of the above three functions because: if the SIGCHLD arrives between `sigprocmask` and `pause`, then we will never return from `pause`. This is why we need an *atomic* version of these three functions.
