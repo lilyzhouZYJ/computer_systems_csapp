@@ -29,7 +29,7 @@ CMP and TEST instructions:
 - `CMP`: Behaves as SUB, but does not update destination
 - `TEST`: Behaves as AND, but does not update destination
 
-<img src="3-13-comparison-and-test.jpg" alt="Comparison and Test Instructions" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-13-comparison-and-test.jpg" alt="Comparison and Test Instructions" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -42,7 +42,7 @@ CMP and TEST instructions:
 
 We can set a single byte to 0 or 1 depending on the condition codes, using the SET instructions.
 
-<img src="3-14-set-instructions.jpg" alt="Set Instructions" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-14-set-instructions.jpg" alt="Set Instructions" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -66,7 +66,7 @@ comp:
 - Causes the execution of instructions to *jump* to a new position in the program.
 - The jump destinations are generally indicated in assembly code by *labels*.
 
-<img src="3-15-jump-instructions.jpg" alt="Jump Instructions" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-15-jump-instructions.jpg" alt="Jump Instructions" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -149,7 +149,7 @@ absdiff:
 - Conditional data transfers could outperform conditional control transfers, due to the mechanism of *pipelining* in modern processors.
   - Processors achieve high performance through pipelining, where they overlap the steps of the successive instructions. When they reach a conditional branch, they employ *branch prediction logic* to try to guess whether or not a jump instruction will be followed. If the prediction turns out to be wrong, the processor has to discard the work it has done on future instructions and begin refilling the pipeline, which takes a lot of work.
 
-<img src="3-18-conditional-move-instructions.jpg" alt="Conditional Move Instructions" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-18-conditional-move-instructions.jpg" alt="Conditional Move Instructions" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

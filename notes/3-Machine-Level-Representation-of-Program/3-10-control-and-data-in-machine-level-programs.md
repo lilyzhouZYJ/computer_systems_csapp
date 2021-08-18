@@ -30,7 +30,7 @@ int result = fp(0, &x);
 
 ## 3.10.2 Life in the Real World: Using the GDB Debugger
 
-<img src="3-39-gdb-commands.jpg" alt="Example GDB commands" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-39-gdb-commands.jpg" alt="Example GDB commands" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -63,7 +63,7 @@ echo:
 
 The stack organization is as follows:
 
-<img src="3-40-stack-org-for-echo.jpg" alt="Stack organization for echo function" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-40-stack-org-for-echo.jpg" alt="Stack organization for echo function" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -103,7 +103,7 @@ Our input string, depending on its length, could lead to undesired overwrites:
   - Randomly generates a special *canary* value each time a program is run, and stores it in the stack frame between any local buffer and the rest of the stack state.
   - Before returning from the function, the program checks if the canary has been altered. If so, the program aborts.
 
-<img src="3-42-stack-org-for-echo-with-protector.jpg" alt="Stack organization for echo function with stack protector enabled" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-42-stack-org-for-echo-with-protector.jpg" alt="Stack organization for echo function with stack protector enabled" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -197,7 +197,7 @@ vframe:
 
 The stack frame organization for function `vframe` is shown below:
 
-<img src="3-44-stack-frame-for-vframe.jpg" alt="Stack frame structure for function vframe" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-44-stack-frame-for-vframe.jpg" alt="Stack frame structure for function vframe" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 *In this image:*
 - $s_1$ denotes the value of the stack pointer after allocating space for `i`.

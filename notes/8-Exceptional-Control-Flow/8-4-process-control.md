@@ -94,13 +94,13 @@ Note the following in the above example:
 
 A *process graph* of the above example is shown below:
 
-<img src="8-16-process-graph.jpg" alt="Process graph of above example" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-16-process-graph.jpg" alt="Process graph of above example" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 Process graphs are very helpful, especially with nested `fork` calls. We can examine the example below:
 
-<img src="8-17-nested-fork.jpg" alt="Process graph for a nested fork" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-17-nested-fork.jpg" alt="Process graph for a nested fork" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -288,13 +288,13 @@ int execve(const char *filename, const char *argv[], const char *envp[]);
 - It returns to the calling program only if there is an error. Otherwise, it is ***called once but never returns***.
 - The argument list is a null-terminated array of pointers. By convention, `argv[0]` is the name of the executable object file.
 
-<img src="8-20-argument-and-environment-variable-list.jpg" alt="Organization of argument list and environment variable list" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-20-argument-and-environment-variable-list.jpg" alt="Organization of argument list and environment variable list" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 Below shows the typical organization of the user stack when a new program starts:
 
-<img src="8-22-user-stack.jpg" alt="Typical organization of the user stack when a new program starts" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-22-user-stack.jpg" alt="Typical organization of the user stack when a new program starts" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

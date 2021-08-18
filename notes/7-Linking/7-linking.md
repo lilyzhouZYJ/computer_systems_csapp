@@ -14,7 +14,7 @@
 
 - The process in the above example:
 
-<img src="7-2-static-linking.jpg" alt="Static linking" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/7-2-static-linking.jpg" alt="Static linking" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -57,7 +57,7 @@ The linker essentially concatenates the byte blocks of object files, decides on 
 
 # 7.4 Relocatable Object Files
 
-<img src="7-3-elf-object-file.jpg" alt="Typical ELF relocatable object file" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/7-3-elf-object-file.jpg" alt="Typical ELF relocatable object file" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -75,7 +75,7 @@ The linker essentially concatenates the byte blocks of object files, decides on 
 
 <br>
 
-<img src="7-4-elf-symbol-table.jpg" alt="ELF symbol table entry" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/7-4-elf-symbol-table.jpg" alt="ELF symbol table entry" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -174,7 +174,7 @@ double x;       // writing x in module 2 will override y!
 
 Relocatable Object Files:
 
-<img src="relocation.jpg" alt="Relocation" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/relocation.jpg" alt="Relocation" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -188,7 +188,7 @@ Linker has to pick an absolute address for each symbol, like for `main()`, or `s
 
 # Loading Executable Object Files
 
-<img src="loading-executable-object-files.jpg" alt="Loading executable object files" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/loading-executable-object-files.jpg" alt="Loading executable object files" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

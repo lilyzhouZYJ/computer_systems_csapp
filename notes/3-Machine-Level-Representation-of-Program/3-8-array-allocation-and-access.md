@@ -28,7 +28,7 @@ movl    (%rdx, %rcs, 4), %eax   # accesses address A+i*4
 
 Some array pointer arithmetic examples:
 
-<img src="3-8-2-array-pointer-arithmetic.jpg" alt="Pointer arithmetic examples" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-8-2-array-pointer-arithmetic.jpg" alt="Pointer arithmetic examples" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -37,7 +37,7 @@ Some array pointer arithmetic examples:
 - Multi-dimensional array elements are ordered in memory in *row-major* order.
   - This is a consequence of the nested declaration: For `int A[5][3]`, we view `A` as an array of 5 elements, each of which is an array of 3 `int`'s.
 
-<img src="3-36-array-elements-row-major-order.jpg" alt="Array elements in row-major order" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-36-array-elements-row-major-order.jpg" alt="Array elements in row-major order" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

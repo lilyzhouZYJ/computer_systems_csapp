@@ -13,7 +13,7 @@
 - Space is allocated on the stack by decremeting the stack pointer, and is deallocated by incrementing the stack pointer. (Note how the stack grows downward--the pointer decreases as we grow the stack.)
 - A procedure allocates space on the stack when it requires storage beyond what it can hold in registers. This is called the procedure's **stack frane**.
 
-<img src="3-25-stack-frame-structure.jpg" alt="Stack Frame Structure" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-25-stack-frame-structure.jpg" alt="Stack Frame Structure" style="width:400px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -50,7 +50,7 @@
 - With x86-64, up to six integral (i.e. integer and pointer) arguments can be passed via registers.
 - The order in which registers are used:
 
-<img src="3-28-registers-for-function-arguments.jpg" alt="Registers for Function Arguments" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-28-registers-for-function-arguments.jpg" alt="Registers for Function Arguments" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -148,7 +148,7 @@ call_proc:
     ret                             # return
 ```
 
-<img src="3-33-stack-frame-call-proc.jpg" alt="Stack frame for function call_proc" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/3-33-stack-frame-call-proc.jpg" alt="Stack frame for function call_proc" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

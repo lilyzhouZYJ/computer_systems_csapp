@@ -2,7 +2,7 @@
 
 The *memory hierarchy* is an approach for organizing memory systems that is used in all modern computer systems.
 
-<img src="6-21-memory-hierarchy.jpg" alt="The memory hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-21-memory-hierarchy.jpg" alt="The memory hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -17,7 +17,7 @@ The *memory hierarchy* is an approach for organizing memory systems that is used
   - The storage at level *k+1* is partitioned into contiguous chunks of data objects called *blocks*. At any point, the cache at level *k* contains copies of a subset of the blocks from level *k+1*.
   - Data are always copied back and forth between level *k* and *k+1* in block-size *transfer units*. While the block size is fixed between any particular pair of adjacent levels in the hierarchy, other pairs of levels can have different block sizes.
 
-<img src="6-22-principle-of-caching.jpg" alt="The basic principle of caching in a memory hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-22-principle-of-caching.jpg" alt="The basic principle of caching in a memory hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -45,6 +45,6 @@ The *memory hierarchy* is an approach for organizing memory systems that is used
 
 - At each level, some form of logic must *manage* the cache. For example, at the highest level of the memory hierarchy, the register files are managed by the compiler.
 
-<img src="6-23-caching.jpg" alt="The ubiquity of caching in modern computer systems" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-23-caching.jpg" alt="The ubiquity of caching in modern computer systems" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>

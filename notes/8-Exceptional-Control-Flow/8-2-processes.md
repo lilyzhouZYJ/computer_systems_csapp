@@ -18,7 +18,7 @@ When we run a program, we get the illusion that our program is the only one runn
 - When running multiple processes, the single physical control flow of the processor is partitioned into multiple logical flows.
   - Processes take turns using the processor. Each runs a portion of its flow and then is ***preempted*** (temporarily suspended) while others take their turns.
 
-<img src="8-12-logical-control-flows.jpg" alt="Logical control flows" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-12-logical-control-flows.jpg" alt="Logical control flows" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -41,7 +41,7 @@ Below is a diagram of a private address space for a process:
 - The bottom is reserved for the *user program*, with its code, data, heap, and stack segments.
 - The top portion is reserved for the *kernel*, including code, data, and stack that the kernel uses when it executes instructions on behalf of the process (e.g. when the program executes a system call).
 
-<img src="8-13-process-address-space.jpg" alt="Process address space" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-13-process-address-space.jpg" alt="Process address space" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -72,6 +72,6 @@ Below is a diagram of a private address space for a process:
 - It can also occur as a result of a *timer interrupt*, which is implemented by all systems.
 - Another instance is a *disk interrupt*, where the disk controller sends an interrupt to signal that the requested data have been transferred from disk to memory.
 
-<img src="8-14-context-switch.jpg" alt="Process context switch" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-14-context-switch.jpg" alt="Process context switch" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>

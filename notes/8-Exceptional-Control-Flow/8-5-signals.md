@@ -3,7 +3,7 @@
 - Signals are a higher-level software form of exceptional control flow, and they allow processes and kernels to interrupt other processes.
 - **Signal** - a small message that notifies a process that an event of some type has occurred in the system.
 
-<img src="8-26-linux-signals.jpg" alt="Linux signals" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-26-linux-signals.jpg" alt="Linux signals" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -14,7 +14,7 @@
 - ***Receiving a signal*** - a destination process receives a signal when it is forced by the kernel to react to the signal.
   - The process can 1) ignore the signal, 2) terminate, or 3) *catch* the signal with a user-level function called the **signal handler**.
 
-<img src="8-27-signal-handling.jpg" alt="Signal handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-27-signal-handling.jpg" alt="Signal handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -60,7 +60,7 @@ int setpgid(pid_t pid, pid_t pgid);         // returns 0 on success, -1 on error
 - Processes created as a result of evaluating a single command line are referred to as **jobs**.
 - At any point in time, there can be at most one foreground job and 0 or more background ones.
 
-<img src="8-28-foreground-background-process-groups.jpg" alt="Foreground and background proces groups" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-28-foreground-background-process-groups.jpg" alt="Foreground and background proces groups" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -165,7 +165,7 @@ int main(){
 
 - Signal handlers can also be interrupted by other handlers, as shown below.
 
-<img src="8-31-handlers-interrupted-by-other-handlers.jpg" alt="Handlers can be interrupted by other handlers" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-31-handlers-interrupted-by-other-handlers.jpg" alt="Handlers can be interrupted by other handlers" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

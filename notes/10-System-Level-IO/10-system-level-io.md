@@ -43,7 +43,7 @@
 - The Linux kernel organizes all files in a single **directory hierarchy**.
 - Each process has a **current working directory** that identifies its location in the hierarchy.
 
-<img src="10-1-linux-directory-hierarchy.jpg" alt="Part of the Linux directory hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-1-linux-directory-hierarchy.jpg" alt="Part of the Linux directory hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -78,7 +78,7 @@ int open(char *filename, int flags, mode_t mdoe);
   - O_APPEND - before each write, set the file position to the end of the file.
 - `mode` specifies the access permision bits of the new file.
 
-<img src="10-2-access-permission.jpg" alt="Access permission bits" style="width:350px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-2-access-permission.jpg" alt="Access permission bits" style="width:350px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -342,7 +342,7 @@ First we need to understand how the kernel represents open files:
 - **V-node table** - shared by all processes.
   - Each entry includes most information in the `stat` structure.
 
-<img src="10-12-open-files.jpg" alt="Typical kernel data structures for open files" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-12-open-files.jpg" alt="Typical kernel data structures for open files" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -350,7 +350,7 @@ First we need to understand how the kernel represents open files:
 
 Multiple descriptors can reference the same file through different file table entries. This happens if `open` is called twice for the same filename. Each descriptor would have its distinct file position.
 
-<img src="10-13-file-sharing.jpg" alt="File sharing" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-13-file-sharing.jpg" alt="File sharing" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -361,7 +361,7 @@ Multiple descriptors can reference the same file through different file table en
 
 If the parent has the open files shown in Figure 10.12 above, then the figure below shows the situation after calling `fork`:
 
-<img src="10-14-child-inherits-open-files.jpg" alt="How a child process inherits the parent's open files" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-14-child-inherits-open-files.jpg" alt="How a child process inherits the parent's open files" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -388,7 +388,7 @@ int dup2(int oldfd, int newfd);
 
 If we have the situation of Figure 10.12 above, then after we call `dup2(4,1)`, both descriptor 4 and 1 will now point to File B (as shown below). Now, any data writen to standard output will be redirected to File B.
 
-<img src="10-15-redirect-standard-output.jpg" alt="Kernel data structures after redirecting standard output" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-15-redirect-standard-output.jpg" alt="Kernel data structures after redirecting standard output" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -414,7 +414,7 @@ extern FILE * stderr;
 
 # 10.11 Putting It Together: Which I/O Functions Should I Use?
 
-<img src="10-16-io-packages.jpg" alt="The I/O packages we have discussed" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/10-16-io-packages.jpg" alt="The I/O packages we have discussed" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

@@ -33,14 +33,14 @@
 - Information flows in and out of the chip via external connectors called *pins*. Each pin caries a 1-bit signal.
   - *The figure below shows eight `data` pins that each transfer 1 bit of data and two `addr` pins that carry 2-bit row and column supercell addresses.*
 
-<img src="6-3-dram-supercell.jpg" alt="High-level view of a 128-bit 16x8 DRAM chip" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-3-dram-supercell.jpg" alt="High-level view of a 128-bit 16x8 DRAM chip" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 - Each DRAM chip is connected to a *memory controller* that transfers *w* bits at a time to and from the chip.
   - To read supercell (2,1), the memory controller sends row address 2. The DRAM responds by copying the entire row 2 into an internal row buffer. Next, the memory controller sends column address 1, and the DRAM responds by sending the 8 bits in supercell (2,1) from the row buffer to the memory controller.
 
-<img src="6-4-reading-dram-supercell.jpg" alt="Reading the contents of a DRAM supercell" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-4-reading-dram-supercell.jpg" alt="Reading the contents of a DRAM supercell" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -49,7 +49,7 @@
 - DRAM chips are packaged in *memory modules*, consisting of multiple DRAMs. The memory content at each main memory address is stored across the DRAMs at the same supercell address.
 - To retrieve a word at memory address *A*, the memory controller converts *A* to a supercell address (*i,j*) and sends it to the memory module, which then broadcasts *i* and *j* to each DRAM. In response, each DRAM outputs the 8-bit contents of its (*i,j*) supercell, and the module collects these outputs and forms them into a 64-bit word, returning it to the memory controller.
 
-<img src="6-5-reading-memory-module.jpg" alt="Reading the contents of a memory module" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-5-reading-memory-module.jpg" alt="Reading the contents of a memory module" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -72,7 +72,7 @@
   - *Read transaction*: transfers data from main memory to CPU.
   - *Write transaction*: transfers data from CPU to main memory.
 
-<img src="6-6-bus-structure.jpg" alt="Example bus structure that connects the CPUP and main memory" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-6-bus-structure.jpg" alt="Example bus structure that connects the CPUP and main memory" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -81,13 +81,13 @@ Consider what happens when the CPU performs a load operation such as `movq A, %r
 2. The main memory senses the address signal on the memory bus, reads the address, fetches data from the DRAM memory modules, and writes the data to the memory bus. The I/O bridge translates the memory
 3. The CPU senses the data on the system bus, reads the data, and copies it into register `%rax`.
 
-<img src="6-7-memory-read-load-operation.jpg" alt="Memory read transaction for a load operation" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-7-memory-read-load-operation.jpg" alt="Memory read transaction for a load operation" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 A write transaction, like `movq %rax, A`, takes similar steps:
 
-<img src="6-8-memory-write-store-operation.jpg" alt="Memory write transaction for a store operation" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-8-memory-write-store-operation.jpg" alt="Memory write transaction for a store operation" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -102,7 +102,7 @@ A write transaction, like `movq %rax, A`, takes similar steps:
 - A typical disk surface consists of a collection of concentric rings called *tracks*. Each track is partitioned into a collection of *sectors*, and each secto contains an equal number of data bits. Sectors are separated by *gaps* where no data bits are stored.
 - A *cylinder* is the collection of tracks on all the surfaces that are equidistant from the center of the spindle.
 
-<img src="6-9-disk-geometry.jpg" alt="Disk geometry" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-9-disk-geometry.jpg" alt="Disk geometry" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -119,7 +119,7 @@ A write transaction, like `movq %rax, A`, takes similar steps:
 - Modern disks use a technique known as *multiple zone recording*: A set of cylinders is partitioned into subsets known as *recording zones*, and each zone consists of a contiguous collection of cylinders. Each track in each cylinder in a zone has the same number of sectors.
 
 - To calculate the capacity of a disk:
-<img src="disk-capacity-formula.jpg" alt="Disk capacity formula" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/disk-capacity-formula.jpg" alt="Disk capacity formula" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -129,7 +129,7 @@ A write transaction, like `movq %rax, A`, takes similar steps:
 - Once the head is positioned over the desired track, then as each bit of the track passes underneath, the head can either read the bit or write the bit.
 - The heads are lined up vertically and move in unison.
 
-<img src="6-10-disk-dynamics.jpg" alt="Disk dynamics" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-10-disk-dynamics.jpg" alt="Disk dynamics" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -157,7 +157,7 @@ A write transaction, like `movq %rax, A`, takes similar steps:
 - I/O devices are conected to the CPU and main memory using an *I/O bus*.
   - System bus and memory bus are CPU-specific, but I/O buses are independent of the underlying CPU.
 
-<img src="6-11-bus-structure-with-io-devices.jpg" alt="Bus structure that connects the CPU, main memory, and I/O devices" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-11-bus-structure-with-io-devices.jpg" alt="Bus structure that connects the CPU, main memory, and I/O devices" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -180,7 +180,7 @@ A write transaction, like `movq %rax, A`, takes similar steps:
 
 <br>
 
-<img src="6-12-reading-disk-sector.jpg" alt="Reading a disk sector" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-12-reading-disk-sector.jpg" alt="Reading a disk sector" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -192,7 +192,7 @@ A write transaction, like `movq %rax, A`, takes similar steps:
   - Data are read and written in units of pages.
   - A page can be written only after the entire block to which it belongs has been *erased*. This makes random writes slower than reads.
 
-<img src="6-13-ssd.jpg" alt="SSD" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-13-ssd.jpg" alt="SSD" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

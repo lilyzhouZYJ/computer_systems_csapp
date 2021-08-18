@@ -12,7 +12,7 @@
   - This change is referred to as an ***event***. 
 - Exceptions are implemented *partly by the hardware* and *partly by the OS*.
 
-<img src="8-1-exception.jpg" alt="Anatomy of an exception" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-1-exception.jpg" alt="Anatomy of an exception" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -29,7 +29,7 @@
 - Each kind of exception is assigned a unique nonnegative integer ***exception number***.
 - At system boot time, the OS allocates and initializes a jump table called an ***exception table***, where each entry *k* gives the address of the handler for exception *k*.
 
-<img src="8-2-exception-table.jpg" alt="Exception table" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-2-exception-table.jpg" alt="Exception table" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -47,7 +47,7 @@
 
 Four classes: *interrupts*, *traps*, *faults*, and *aborts*.
 
-<img src="8-4-classes-of-exceptions.jpg" alt="Classes of exceptions" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-4-classes-of-exceptions.jpg" alt="Classes of exceptions" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -58,7 +58,7 @@ Four classes: *interrupts*, *traps*, *faults*, and *aborts*.
 - Always returns to the **next instruction**.
 - Afer the handler returns, the program will continue to execute as though the interrupt never happened.
 
-<img src="8-5-interrupt-handling.jpg" alt="Interrupt handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-5-interrupt-handling.jpg" alt="Interrupt handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -72,7 +72,7 @@ Four classes: *interrupts*, *traps*, *faults*, and *aborts*.
 - Provides a procedure-like interface between user programs and the kernel, known as a ***system call***.
   - When the processor executes a `syscall` *n* instruction, requesting service *n*, it causes a trap to an exception handler that decodes the argument and calls the associated kernel routine.
 
-<img src="8-6-trap-handling.jpg" alt="Trap handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-6-trap-handling.jpg" alt="Trap handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -82,7 +82,7 @@ Four classes: *interrupts*, *traps*, *faults*, and *aborts*.
 - If the fault handler corrects the error, it returns control to the **faulting instruction**; otherwise, it returns to an **`abort` routine** in the kernel that terminates the program.
 - E.g. page fault exception.
 
-<img src="8-7-fault-handling.jpg" alt="Fault handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-7-fault-handling.jpg" alt="Fault handling" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -91,7 +91,7 @@ Four classes: *interrupts*, *traps*, *faults*, and *aborts*.
 - Results from **uncoverable fatal errors**.
 - Never returns control to the application program, but rather returns to an **`abort` routine** that terminates the program.
 
-<img src="8-8-abort-handling.jpg" alt="Abort handling" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-8-abort-handling.jpg" alt="Abort handling" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -115,7 +115,7 @@ There are up to 256 exception types.
 
 - Each system call has a unique integer number that corresponds to an offset in a jump table in the kernel.
 
-<img src="8-10-linux-system-calls.jpg" alt="Examples of Linux x86-64 system calls" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-10-linux-system-calls.jpg" alt="Examples of Linux x86-64 system calls" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 

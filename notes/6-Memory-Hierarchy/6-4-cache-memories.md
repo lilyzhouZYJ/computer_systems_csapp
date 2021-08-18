@@ -1,6 +1,6 @@
 # 6.4 Cache Memories
 
-<img src="6-24-bus-structure-cache-memories.jpg" alt="Typical bus structure for cache memories" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-24-bus-structure-cache-memories.jpg" alt="Typical bus structure for cache memories" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -21,7 +21,7 @@ Cache memories typically consist of three levels:
 - The *capacity/size* of a cache is $C = S \times E \times B$.
 - The *memory address* (of *m* bits) is partitioned into three fields: **tag** (*t* bits), **set index** (*s* bits), and **block offset** (*b* bits).
 
-<img src="6-25-organization-of-cache.jpg" alt="General organization of cache" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-25-organization-of-cache.jpg" alt="General organization of cache" style="width:600px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -36,7 +36,7 @@ Cache memories typically consist of three levels:
 
 The following are some important parameters in representing cache memories:
 
-<img src="6-26-cache-parameters.jpg" alt="Cache parameters" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-26-cache-parameters.jpg" alt="Cache parameters" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -44,7 +44,7 @@ The following are some important parameters in representing cache memories:
 
 - **Direct-mapped cache*: caches with exactly one line per set ($E = 1$).
 
-<img src="6-27-direct-mapped-cache.jpg" alt="Direct-mapped cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-27-direct-mapped-cache.jpg" alt="Direct-mapped cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -59,7 +59,7 @@ The following are some important parameters in representing cache memories:
 
 <br>
 
-<img src="6-28-set-selection-direct-mapped-cache.jpg" alt="Set selection in a direct-mapped cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-28-set-selection-direct-mapped-cache.jpg" alt="Set selection in a direct-mapped cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -69,7 +69,7 @@ The following are some important parameters in representing cache memories:
 
 <br>
 
-<img src="6-29-line-matching-word-selection-direct-mapped-cache.jpg" alt="Line matching and word selection in a direct-mapped cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-29-line-matching-word-selection-direct-mapped-cache.jpg" alt="Line matching and word selection in a direct-mapped cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -101,19 +101,19 @@ The following are some important parameters in representing cache memories:
 - **Set associative cache**: each set can hold more than one cache line.
 - A cache with $1 < E < C/B$ is referred to as an **E-way set associative cache**.
 
-<img src="6-32-set-associative-cache.jpg" alt="Set associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-32-set-associative-cache.jpg" alt="Set associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 ### **Set Selection in a Set Associative Cache**
 
-<img src="6-33-set-selection-set-associative-cache.jpg" alt="Set selection in a set associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-33-set-selection-set-associative-cache.jpg" alt="Set selection in a set associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 ### **Line Matching and Word Selection in a Set Associative Cache**
 
-<img src="6-34-line-matching-word-selection-set-associative-cache.jpg" alt="Line matching and word selection in a set associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-34-line-matching-word-selection-set-associative-cache.jpg" alt="Line matching and word selection in a set associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -129,7 +129,7 @@ The following are some important parameters in representing cache memories:
 
 - **Fully associative cache**: consists of a single set (i.e. $E = C/B$) that contains all of the cache lines.
 
-<img src="6-35-fully-associative-cache.jpg" alt="Fully associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-35-fully-associative-cache.jpg" alt="Fully associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -138,13 +138,13 @@ The following are some important parameters in representing cache memories:
 - This is trivial since there is only one set.
 - Also there are no set index bits in the address, which is partitioned into just tag bits and block offset bits.
 
-<img src="6-36-set-selection-fully-associative-cache.jpg" alt="Set selection in a fully associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-36-set-selection-fully-associative-cache.jpg" alt="Set selection in a fully associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
 ### **Line Matching and Word Selection in Fully Associative Caches**
 
-<img src="6-37-line-matching-word-selection-fully-associative-cache.jpg" alt="Line matching and word selection in a fully associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-37-line-matching-word-selection-fully-associative-cache.jpg" alt="Line matching and word selection in a fully associative cache" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
@@ -181,7 +181,7 @@ The following are some important parameters in representing cache memories:
   - I-caches are typically read-only, and thus simpler. The two caches are often optimized to their different access patterns.
   - Reduces capacity misses, by separating data accesses and instruction accesses.
 
-<img src="6-38-intel-core-i7-cache.jpg" alt="Intel Core i7 cache hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/6-38-intel-core-i7-cache.jpg" alt="Intel Core i7 cache hierarchy" style="width:500px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
