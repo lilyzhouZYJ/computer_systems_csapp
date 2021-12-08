@@ -12,7 +12,7 @@
   - This change is referred to as an ***event***. 
 - Exceptions are implemented *partly by the hardware* and *partly by the OS*.
 
-<img src="./images/8-1-exception.jpg" alt="Anatomy of an exception" style="width:450px; margin-left: auto; margin-right: auto; display: block;"/>
+<img src="./images/8-1-exception.jpg" alt="Anatomy of an exception" style="width:550px; margin-left: auto; margin-right: auto; display: block;"/>
 
 <br>
 
